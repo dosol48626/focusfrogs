@@ -19,6 +19,8 @@ public class Comm {
 
     private String username;
 
+    //private Long user_id;
+
     @Column(nullable = false, length = 100)
     private String title;
 

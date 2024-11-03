@@ -17,6 +17,8 @@ public class CommDTO {
 
     private String username;
 
+    //private Long user_id;
+
     private String title;
 
     private String content;

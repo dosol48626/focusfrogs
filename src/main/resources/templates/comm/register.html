@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Q&A 등록 페이지</title>
+</head>
+<body>
+
+<!-- 상단 네비게이션 바 -->
+<header style="border-bottom: 1px solid #ddd; padding: 10px; display: flex; justify-content: space-between; align-items: center;">
+  <div style="flex-grow: 1;">
+    <button style="padding: 10px 20px;">로고</button>
+  </div>
+  <nav>
+    <a href="#" style="margin-right: 15px;">Notice</a>
+    <a href="#">FAQ</a>
+  </nav>
+</header>
+
+<!-- 메인 콘텐츠 박스 -->
+<main style="max-width: 800px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+
+  <!-- 제목 및 설명 박스 -->
+  <section style="text-align: center; margin-bottom: 20px;">
+    <h1 style="font-size: 24px; margin-bottom: 10px;">Q&A 페이지</h1>
+    <p style="font-size: 14px; color: #555;">서로 질문과 답변을 하며 문제를 해결해보세요.</p>
+  </section>
+
+  <!-- 등록 폼 -->
+  <form action="/comm/register" method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 20px;">
+
+    <!-- 제목 입력란 -->
+    <section>
+      <label for="title" style="display: block; font-weight: bold; margin-bottom: 5px;">제목</label>
+      <input type="text" id="title" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" placeholder="문제의 주제를 입력해 주세요.">
+    </section>
+
+    <!-- 내용 입력란 -->
+    <section>
+      <label for="content" style="display: block; font-weight: bold; margin-bottom: 5px;">내용</label>
+      <textarea id="content" name="content" rows="6" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" placeholder="질문의 상세 내용을 입력해 주세요."></textarea>
+    </section>
+
+    <!-- 사진 업로드 -->
+    <section>
+      <label for="file-upload" style="display: block; font-weight: bold; margin-bottom: 5px;">사진 업로드</label>
+      <input type="file" id="file-upload" name="file-upload" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+    </section>
+
+    <!-- 버튼 박스 -->
+    <section style="display: flex; justify-content: center; gap: 10px;">
+      <button type="submit" style="padding: 10px 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">게시물 등록</button>
+      <button type="button" onclick="history.back();" style="padding: 10px 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">뒤로</button>
+    </section>
+
+  </form>
+
+</main>
+
+</body>
+</html>

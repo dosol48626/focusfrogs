@@ -1,6 +1,8 @@
 package com.dosol.focusfrogs.controller;
 
 import com.dosol.focusfrogs.domain.Comm;
+import com.dosol.focusfrogs.domain.User;
+import com.dosol.focusfrogs.dto.CommDTO;
 import com.dosol.focusfrogs.dto.CustomUserDetails;
 import com.dosol.focusfrogs.repository.CommRepository;
 import com.dosol.focusfrogs.repository.UserRepository;
@@ -15,7 +17,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -50,5 +54,21 @@ public class CommController {
         //이거를 주석해라고?
         List<Comm> comms = commService.readByUserId(userDetails.getUser().getId());
         model.addAttribute("comms", comms);
+    }
+
+    @GetMapping("/register")
+    public void registerGet() {
+    }
+
+    @PostMapping("/register")
+    public String registerPost(CommDTO commDTO,
+                               //@AuthenticationPrincipal CustomUserDetails userDetails,
+                               RedirectAttributes redirectAttributes) {
+
+        //commDTO.setUsername(userDetails.getUser().getUsername());
+        //commDTO.setUser_id(userDetails.getUser().getId());
+
+        commService.register(commDTO);
+        return "redirect:/comm/main";
     }
 }

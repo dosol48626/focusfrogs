@@ -72,26 +72,25 @@
     .dropdown-content a:hover {
       background-color: #f1f1f1;
     }
-  </style>
-  <script>
-    function toggleDropdown() {
-      var dropdownContent = document.getElementById("dropdownContent");
-      dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
-    }
 
-    // 외부 클릭 시 드롭다운 닫기
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropdown-btn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.style.display === "block") {
-            openDropdown.style.display = "none";
-          }
-        }
-      }
+    /* 글 쓰기 버튼 스타일 */
+    .write-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
     }
-  </script>
+    .write-btn:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
 <div class="header">
@@ -136,6 +135,7 @@
       </tbody>
     </table>
     <p th:if="${#lists.isEmpty(comms)}">게시글이 없습니다.</p>
+    <a th:href="@{/comm/register}" class="write-btn">글 쓰기</a>
   </div>
 </div>
 </body>
