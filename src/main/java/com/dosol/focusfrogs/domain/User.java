@@ -1,10 +1,11 @@
 package com.dosol.focusfrogs.domain;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+@Getter
+@Setter
 @Entity
-@Data
 public class User {
 
     @Id

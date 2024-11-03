@@ -81,7 +81,28 @@
     <div class="content">
         <div class="top">
             <div class="box">
-                여기는 리스트
+                <h2>게시글 리스트</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="comm : ${comms}">
+                        <td th:text="${comm.num}">번호</td>
+                        <td>
+                            <a th:href="@{/comm/read(num=${comm.num})}" th:text="${comm.title}">제목</a>
+                        </td>
+                        <td th:text="${comm.username}">작성자</td>
+                        <td th:text="${comm.visitcount}">조회수</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p th:if="${#lists.isEmpty(comms)}">게시글이 없습니다.</p>
             </div>
             <div class="box">
                 여기는 게시판?

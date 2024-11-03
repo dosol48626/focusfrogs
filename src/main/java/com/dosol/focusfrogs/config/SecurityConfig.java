@@ -23,11 +23,11 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                         //리퀘스트매처는 이 주소에 조건을 주겠다는거다
-                        .requestMatchers("/", "/login", "/join", "/joinProc").permitAll()
+                        .requestMatchers( "/login", "/join", "/joinProc").permitAll()
                         //퍼밋올 로그인 안한 애도 접근 가능
                         .requestMatchers("/admin").hasRole("ADMIN")
                         // 특정 롤이 있어야 가능
-                        .requestMatchers("/my/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers("/","/my/**").hasAnyRole("ADMIN", "USER")
                         //애니롤은 저거 두개 가능, 여러가지 롤 설정이다.
                         .anyRequest().authenticated()
                         //어덴틱은 로그인하면 다 가능
