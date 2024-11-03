@@ -40,7 +40,9 @@ public class CommController {
         model.addAttribute("id", id);
         model.addAttribute("role", role);
 
-        List<Comm> comm = commService.readAll();
-        model.addAttribute("comms", comm);
+
+//        List<Comm> comm = commService.readAll();
+//        model.addAttribute("comms", comm);
+        //이거를 주석해라고?
     }
 }

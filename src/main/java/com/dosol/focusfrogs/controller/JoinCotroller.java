@@ -23,6 +23,7 @@ public class JoinCotroller {
 
     @PostMapping("/joinProc")
     public String joinProcess(JoinDTO joinDTO) {
+        log.info("@@@@@@@@@@@@@@");
         log.info(joinDTO);
 
         //실패 시 어디로 가는지도 정해야함

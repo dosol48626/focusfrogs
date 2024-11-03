@@ -39,8 +39,8 @@ public class SecurityConfig {
                         .permitAll()
                 );
 
-        //http
-        //        .csrf((auth) -> auth.disable());
+        http
+                .csrf((auth) -> auth.disable());
         //토근 검사안한다고 하는거임. 이게 주석되면 토근 검사해서
         //들어오기때문에 로그인 안된다. 토근 없이는
 
