@@ -23,7 +23,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                         //리퀘스트매처는 이 주소에 조건을 주겠다는거다
-                        .requestMatchers( "/login", "/join", "/joinProc").permitAll()
+                        .requestMatchers( "on","/login", "/join", "/joinProc").permitAll()
                         //퍼밋올 로그인 안한 애도 접근 가능
                         .requestMatchers("/admin").hasRole("ADMIN")
                         // 특정 롤이 있어야 가능

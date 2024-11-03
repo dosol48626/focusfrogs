@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www/thymeleaf.org"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,7 +57,44 @@
             height: 100px;
             border: 1px solid #000;
         }
+
+        /* 드롭다운 메뉴 스타일 */
+        .dropdown-content {
+            display: none;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .dropdown-content a {
+            color: #333;
+            padding: 5px 0;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
     </style>
+    <script>
+        function toggleDropdown() {
+            var dropdownContent = document.getElementById("dropdownContent");
+            dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+        }
+
+        // 외부 클릭 시 드롭다운 닫기
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown-btn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="header">
@@ -67,16 +103,18 @@
 </div>
 <div class="container">
     <div class="sidebar">
-        사이드
+        <p></p>
+        <p class="dropdown-btn" onclick="toggleDropdown()">커뮤니티</p>
+        <div id="dropdownContent" class="dropdown-content">
+            <a href="comm/main">지식 인</a>
+            <a href="">스터디</a>
+        </div>
         <p>테스트1</p>
         <p>테스트1</p>
         <p>테스트1</p>
         <p>테스트1</p>
         <p>테스트1</p>
         <p>테스트1</p>
-        <p>테스트1</p>
-        <p>테스트1</p>
-
     </div>
     <div class="content">
         <div class="top">
