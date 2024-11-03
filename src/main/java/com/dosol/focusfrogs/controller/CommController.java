@@ -1,12 +1,16 @@
 package com.dosol.focusfrogs.controller;
 
 import com.dosol.focusfrogs.domain.Comm;
+import com.dosol.focusfrogs.dto.CustomUserDetails;
+import com.dosol.focusfrogs.repository.CommRepository;
+import com.dosol.focusfrogs.repository.UserRepository;
 import com.dosol.focusfrogs.service.CommService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +30,7 @@ public class CommController {
     private final ModelMapper modelMapper;
 
     @GetMapping("/main")
-    public void commP(Model model) {
+    public void commP(Model model, @AuthenticationPrincipal CustomUserDetails userDetails) {
 
         String id = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -44,5 +48,7 @@ public class CommController {
 //        List<Comm> comm = commService.readAll();
 //        model.addAttribute("comms", comm);
         //이거를 주석해라고?
+        List<Comm> comms = commService.readByUserId(userDetails.getUser().getId());
+        model.addAttribute("comms", comms);
     }
 }
