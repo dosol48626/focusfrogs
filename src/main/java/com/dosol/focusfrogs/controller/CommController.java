@@ -69,8 +69,26 @@ public class CommController {
         //commDTO.setUser_id(userDetails.getUser().getId());
         //commDTO.set(userDetails.getUser().getId());
 
-
         commService.register(commDTO, userDetails.getUser());
         return "redirect:/comm/main";
+    }
+
+//    @GetMapping({"/read", "/modify"})
+//    private void read(Model model,
+//                        Long num,
+//                        @AuthenticationPrincipal CustomUserDetails userDetails) {
+//        log.info("readfy@@@@@@@@@@@@");
+//        CommDTO commDTO = commService.readOne(userDetails.getUser().getId());
+//        model.addAttribute("comm", commDTO);
+//    }
+
+    @GetMapping({"/read", "/modify"})
+    private void read(Model model,
+                      Long num) {
+        log.info("readfy@@@@@@@@@@@@");
+
+        CommDTO commDTO = commService.readOne(num);  // num을 사용하여 게시물 조회
+        log.info(commDTO);
+        model.addAttribute("commDTO", commDTO);
     }
 }

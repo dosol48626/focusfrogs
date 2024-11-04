@@ -15,7 +15,7 @@ import java.util.List;
 public class CommDTO {
     private Long num;
 
-    //private String username;
+    private String username;
 
     //private Long user_id;
 

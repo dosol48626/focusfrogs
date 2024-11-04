@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -29,12 +30,26 @@ public class CommService {
         return num;
     }
 
+//    public CommDTO readOne(Long num) {
+//        Optional<Comm> result = commRepository.findById(num);
+//        Comm comm = result.orElseThrow();
+//        comm.updateVisitCount();
+//        commRepository.save(comm);
+//        CommDTO commDTO = modelMapper.map(comm, CommDTO.class);
+//        return commDTO;
+//    }
+
     public CommDTO readOne(Long num) {
         Optional<Comm> result = commRepository.findById(num);
-        Comm comm = result.orElseThrow();
+
+        Comm comm = result.orElseThrow(() -> new NoSuchElementException("게시물이 존재하지 않습니다."));
+        User user = userRepository.findById(comm.getUser().getId()).get();
+        comm.setUser(comm.getUser());
         comm.updateVisitCount();
         commRepository.save(comm);
         CommDTO commDTO = modelMapper.map(comm, CommDTO.class);
+        commDTO.setUsername(user.getUsername());
+        log.info(commDTO);
         return commDTO;
     }
 
