@@ -51,6 +51,7 @@ public class CommService {
         commDTO.setUsername(user.getUsername());
         log.info(commDTO);
         return commDTO;
+
     }
 
     public void modify(CommDTO commDTO, User user) {
@@ -69,12 +70,6 @@ public class CommService {
         commRepository.deleteById(num);
     }
 
-//    public List<Comm> readAll() {
-//        List<Comm> result = commRepository.findAll();
-//        return result;
-//    } 이렇게 하니까 그냥 어떤 글이든 다 들고오네. 내가 로그인 한거만 가져와야하는데
-
-
     public List<Comm> readAll() {
         List<Comm> comms = commRepository.findAll();
         return comms;
@@ -85,3 +80,4 @@ public class CommService {
 //    }
     //근데 이 list를 쓰면 로그인한 사람의 게시글을 가져오겠지.
 }
+

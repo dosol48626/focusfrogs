@@ -96,8 +96,16 @@ public class CommController {
             model.addAttribute("commDTO", commDTO);
             return "comm/modify";
         } else {
-            return "redirect:/comm/read";
+            return "redirect:/comm/main";
         }
     }
 
+//    @PostMapping("/modify")
+//    public String modifyPost(CommDTO commDTO){
+//        commDTO.setTitle(commDTO.getTitle());
+//        commDTO.setContent(commDTO.getContent());
+//        commService.modify(commDTO);
+//
+//        return "redirect:/comm/read";
+//    }
 }
