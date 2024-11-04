@@ -48,7 +48,10 @@ public class MainController {
 //        List<Comm> comm = commService.readAll();
 //        model.addAttribute("comms", comm);
 
-        List<Comm> comms = commService.readByUserId(userDetails.getUser().getId());
+//        List<Comm> comms = commService.readByUserId(userDetails.getUser().getId());
+//        model.addAttribute("comms", comms);
+
+        List<Comm> comms = commService.readAll();
         model.addAttribute("comms", comms);
 
         return "main";

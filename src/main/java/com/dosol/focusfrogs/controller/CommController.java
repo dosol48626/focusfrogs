@@ -52,8 +52,12 @@ public class CommController {
 //        List<Comm> comm = commService.readAll();
 //        model.addAttribute("comms", comm);
         //이거를 주석해라고?
-        List<Comm> comms = commService.readByUserId(userDetails.getUser().getId());
+//        List<Comm> comms = commService.readByUserId(userDetails.getUser().getId());
+//        model.addAttribute("comms", comms);
+
+        List<Comm> comms = commService.readAll();
         model.addAttribute("comms", comms);
+
     }
 
     @GetMapping("/register")
@@ -65,7 +69,7 @@ public class CommController {
                                @AuthenticationPrincipal CustomUserDetails userDetails,
                                RedirectAttributes redirectAttributes) {
 
-        //commDTO.setUsername(userDetails.getUser().getUsername());
+        commDTO.setUsername(userDetails.getUser().getUsername());
         //commDTO.setUser_id(userDetails.getUser().getId());
         //commDTO.set(userDetails.getUser().getId());
 
@@ -73,16 +77,7 @@ public class CommController {
         return "redirect:/comm/main";
     }
 
-//    @GetMapping({"/read", "/modify"})
-//    private void read(Model model,
-//                        Long num,
-//                        @AuthenticationPrincipal CustomUserDetails userDetails) {
-//        log.info("readfy@@@@@@@@@@@@");
-//        CommDTO commDTO = commService.readOne(userDetails.getUser().getId());
-//        model.addAttribute("comm", commDTO);
-//    }
-
-    @GetMapping({"/read", "/modify"})
+    @GetMapping("/read")
     private void read(Model model,
                       Long num) {
         log.info("readfy@@@@@@@@@@@@");
@@ -91,4 +86,18 @@ public class CommController {
         log.info(commDTO);
         model.addAttribute("commDTO", commDTO);
     }
+
+    @GetMapping("/modify")
+    public String modifyGet(Model model,
+                          Long num,
+                          @AuthenticationPrincipal CustomUserDetails userDetails) {
+        CommDTO commDTO = commService.readOne(num);
+        if (commDTO.getUsername().equals(userDetails.getUser().getUsername())) {
+            model.addAttribute("commDTO", commDTO);
+            return "comm/modify";
+        } else {
+            return "redirect:/comm/read";
+        }
+    }
+
 }

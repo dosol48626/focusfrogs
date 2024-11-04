@@ -17,7 +17,7 @@ public class Comm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num;
 
-    //private String username;
+    private String username;
 
     //private Long user_id;
 

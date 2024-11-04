@@ -53,10 +53,14 @@ public class CommService {
         return commDTO;
     }
 
-    public void modify(CommDTO commDTO) {
+    public void modify(CommDTO commDTO, User user) {
         Optional<Comm> result = commRepository.findById(commDTO.getNum());
 
         Comm comm = result.orElseThrow();
+        if (!comm.getUser().getUsername().equals(user.getUsername())) {
+            return;
+        }
+
         comm.change(commDTO.getTitle(), comm.getContent());
         commRepository.save(comm);
     }
@@ -70,8 +74,14 @@ public class CommService {
 //        return result;
 //    } 이렇게 하니까 그냥 어떤 글이든 다 들고오네. 내가 로그인 한거만 가져와야하는데
 
-    public List<Comm> readByUserId(Long userId) {
-        return commRepository.findByUserId(userId); // 로그인한 사용자의 게시글만 가져오기
+
+    public List<Comm> readAll() {
+        List<Comm> comms = commRepository.findAll();
+        return comms;
     }
+
+//    public List<Comm> readByUserId(Long userId) {
+//        return commRepository.findByUserId(userId); // 로그인한 사용자의 게시글만 가져오기
+//    }
     //근데 이 list를 쓰면 로그인한 사람의 게시글을 가져오겠지.
 }

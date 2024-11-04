@@ -74,7 +74,7 @@
     }
 
     /* 글 쓰기 버튼 스타일 */
-    .write-btn {
+    .write-btn, .modify-btn {
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
@@ -87,7 +87,7 @@
       text-decoration: none;
       text-align: center;
     }
-    .write-btn:hover {
+    .write-btn:hover, .modify-btn:hover {
       background-color: #45a049;
     }
   </style>
@@ -129,13 +129,15 @@
         <td>
           <a th:href="@{/comm/read(num=${comm.num})}" th:text="${comm.title}">제목</a>
         </td>
-        <td th:text="${comm.user.username}">작성자</td>
+<!--        <td th:text="${comm.user.username}">작성자</td>-->
+        <td th:text="${comm.username}">작성자</td>
         <td th:text="${comm.visitcount}">조회수</td>
       </tr>
       </tbody>
     </table>
     <p th:if="${#lists.isEmpty(comms)}">게시글이 없습니다.</p>
     <a th:href="@{/comm/register}" class="write-btn">글 쓰기</a>
+<!--    <a th:href="@{/comm/modify}" class="modify-btn">수정하기</a> &lt;!&ndash; 수정 버튼 추가 &ndash;&gt;-->
   </div>
 </div>
 </body>
