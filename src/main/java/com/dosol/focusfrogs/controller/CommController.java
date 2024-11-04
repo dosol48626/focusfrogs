@@ -62,13 +62,15 @@ public class CommController {
 
     @PostMapping("/register")
     public String registerPost(CommDTO commDTO,
-                               //@AuthenticationPrincipal CustomUserDetails userDetails,
+                               @AuthenticationPrincipal CustomUserDetails userDetails,
                                RedirectAttributes redirectAttributes) {
 
         //commDTO.setUsername(userDetails.getUser().getUsername());
         //commDTO.setUser_id(userDetails.getUser().getId());
+        //commDTO.set(userDetails.getUser().getId());
 
-        commService.register(commDTO);
+
+        commService.register(commDTO, userDetails.getUser());
         return "redirect:/comm/main";
     }
 }

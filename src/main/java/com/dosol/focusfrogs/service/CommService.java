@@ -1,8 +1,10 @@
 package com.dosol.focusfrogs.service;
 
 import com.dosol.focusfrogs.domain.Comm;
+import com.dosol.focusfrogs.domain.User;
 import com.dosol.focusfrogs.dto.CommDTO;
 import com.dosol.focusfrogs.repository.CommRepository;
+import com.dosol.focusfrogs.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -17,9 +19,12 @@ import java.util.Optional;
 public class CommService {
     private final CommRepository commRepository;
     private final ModelMapper modelMapper;
+    private final UserRepository userRepository;
 
-    public Long register(CommDTO commDTO) {
+    public Long register(CommDTO commDTO, User user) {
         Comm comm = modelMapper.map(commDTO, Comm.class);
+        comm.setUser(user);
+
         Long num = commRepository.save(comm).getNum();
         return num;
     }

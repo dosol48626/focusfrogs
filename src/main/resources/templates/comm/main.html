@@ -129,7 +129,7 @@
         <td>
           <a th:href="@{/comm/read(num=${comm.num})}" th:text="${comm.title}">제목</a>
         </td>
-        <td th:text="${comm.username}">작성자</td>
+        <td th:text="${comm.user.username}">작성자</td>
         <td th:text="${comm.visitcount}">조회수</td>
       </tr>
       </tbody>
